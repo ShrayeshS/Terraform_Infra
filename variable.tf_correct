@@ -1,0 +1,25 @@
+variable "resource_group_name" {
+  type        = string
+  description = "resource group name"
+
+}
+
+variable "location" {
+  type    = string
+  default = "canadacentral"
+}
+
+variable "name" {
+  type    = string
+  default = "cancora-k8scluster"
+}
+
+variable "service_principal_name" {
+  type = string
+}
+
+variable "client_secret" {
+  
+}
+
+variable "client_id" {}

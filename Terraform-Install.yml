@@ -1,0 +1,10 @@
+# This template specify the Terraform version using the terraformVersion parameter.
+parameters:
+- name: terraformVersion 
+  type: string
+  default: 'latest' # Replace with latest to specific or own version
+steps:
+  - task: TerraformInstaller@1
+    displayName: install terraform
+    inputs:
+        terraformVersion: ${{ parameters.terraformVersion }} # Specify the Terraform version to install. Use the value provided in the 'terraformVersion' parameter

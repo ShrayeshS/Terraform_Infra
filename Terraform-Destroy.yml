@@ -1,0 +1,7 @@
+steps:
+  - task: TerraformTaskV4@4
+    displayName: Terraform Destroy
+    inputs:
+      provider: 'azurerm'
+      command: 'destroy'
+      environmentServiceNameAzureRM: $(AzureSubscriptionServiceConnectionName)

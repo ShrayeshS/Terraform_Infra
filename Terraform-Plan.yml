@@ -1,0 +1,16 @@
+parameters:
+- name: outputFile
+  default: 'terraformenv.tfplan'
+- name: additionalParameters
+  type: object
+  default: []
+steps:
+   - task: TerraformTaskV4@4
+     displayName: Terraform Plan
+     inputs:
+      provider: 'azurerm'
+      command: 'plan'
+      environmentServiceNameAzureRM: $(AzureSubscriptionServiceConnectionName)
+      publishPlanResults: $(publishPlanResults)
+      commandOptions: "-lock=false ${{ join(' ', parameters.additionalParameters) }} -out=$(System.DefaultWorkingDirectory)/${{ parameters.outputFile }} -detailed-exitcode"
+  

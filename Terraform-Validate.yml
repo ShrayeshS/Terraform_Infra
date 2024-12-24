@@ -1,0 +1,6 @@
+steps:
+  - task: TerraformTaskV4@4
+    displayName: Validating Terraform 
+    inputs:
+        provider: 'azurerm' # The Terraform provider to use for validation.
+        command: 'validate'

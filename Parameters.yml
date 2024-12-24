@@ -1,0 +1,30 @@
+parameters:
+- name: terraformVersion
+  type: string
+  default: 'latest'
+#- name: serviceName
+ # type: string
+#- name: TerraformDirectory
+  #type: string
+- name: AzureSubscriptionServiceConnectionName
+  type: string
+  default: 'SERVICE_CONNECTION'
+- name: TerraformStateStorageAccountResourceGroupName
+  type: string
+  default: 'Infrastructure'
+- name: TerraformStateStorageAccountName
+  type: string
+  default: 'storagedxo'
+- name: TerraformStateStorageAccountContainerName
+  type: string
+  default: 'infracontainer'
+- name: Key
+  type: string
+  default: 'terraform.tfstate'
+- name: outputFile
+  default: 'terraform.tfplan'
+- name: additionalParameters
+  type: object
+  default: []
+- name: publishPlanResults
+  default: 'plan'

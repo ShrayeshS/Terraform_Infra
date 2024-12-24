@@ -1,0 +1,12 @@
+steps:
+  - task: TerraformTaskV4@4
+    displayName: Initialize Terraform
+    inputs:
+      provider: 'azurerm'
+      command: 'init'
+      backendServiceArm: $(AzureSubscriptionServiceConnectionName)
+      backendAzureRmResourceGroupName: $(TerraformStateStorageAccountResourceGroupName)
+      backendAzureRmStorageAccountName: $(TerraformStateStorageAccountName)
+      backendAzureRmContainerName: $(TerraformStateStorageAccountContainerName)
+      backendAzureRmKey: $(Key)
+       

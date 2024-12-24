@@ -1,0 +1,47 @@
+#create Azure Kubernetes Service
+module "aks" {
+  source                 = "./modules/aks/"
+  name                   = var.name
+  client_secret          = var.client_secret
+  location               = var.location
+  resource_group_name    = var.resource_group_name
+  client_id              = var.client_id
+}
+
+output "aksclusterid" {
+  value = module.aks.aks_cluster_id
+}
+
+data "azurerm_kubernetes_service_versions" "current" {
+  location = var.location
+  include_preview = false  
+}
+
+resource "azurerm_kubernetes_cluster_node_pool" "windows_node_pool" {
+  depends_on   = [module.aks]
+  name                  = "win"
+  kubernetes_cluster_id = module.aks.aks_cluster_id
+  vm_size               = "Standard_D2s_v3"
+  node_count            = 2
+  os_type               = "Windows"
+  orchestrator_version  = data.azurerm_kubernetes_service_versions.current.latest_version
+  node_labels = {
+    "nodepool-type" = "user"
+    "environment"   = "dev"
+    "nodepoolos"    = "windows"
+  }
+  node_taints = ["os=Windows:NoSchedule"]
+  tags = {
+    "nodepool-type" = "user"
+    "environment"   = "dev"
+    "nodepoolos"    = "windows"
+  }
+
+}
+
+resource "local_file" "kubeconfig" {
+  depends_on   = [module.aks]
+  filename     = "./kubeconfig"
+  content      = module.aks.config
+}
+

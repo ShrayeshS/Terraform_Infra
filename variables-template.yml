@@ -1,0 +1,22 @@
+variables:
+  - name: terraformVersion
+    value: 'latest'
+  - name: AzureSubscriptionServiceConnectionName
+    value: 'SERVICE_CONNECTION'
+  - name: TerraformStateStorageAccountResourceGroupName
+    value: 'Infra'
+  - name: TerraformStateStorageAccountName
+    value: 'infradxostorage'
+  - name: TerraformStateStorageAccountContainerName
+    value: 'demo-container'
+  - name: Key
+    value: 'terraformdemo.tfstate'
+  #- name: outputFile
+    #value: 'terraform.tfplan'
+  #- name: additionalParameters
+    #type: object
+    #value: []
+  - name: publishPlanResults #The dotnet project that holds the application code
+    value: 'plan'
+  - name: env
+    value: 'develop'
